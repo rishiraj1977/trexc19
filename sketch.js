@@ -83,10 +83,15 @@ function draw() {
     }
     
      //jump when the space key is pressed
-    if(keyDown("space")){
+    if(keyDown("space") && trex.y>=159){
+      jumpSound.play();
       trex.velocityY = -10 ;      
     }
   
+     if (score>0 && score%100 === 0){
+     checkPointSound.play();
+    }
+     
     //add gravity
     trex.velocityY = trex.velocityY + 0.8;
     
@@ -98,7 +103,7 @@ function draw() {
     
     //End the game when trex is touching the obstacle
     if(obstaclesGroup.isTouching(trex)){
-     
+     dieSound.play();
       gameState = END;
      
     }
